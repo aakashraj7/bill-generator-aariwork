@@ -4,6 +4,7 @@ import { Card, Button } from './UI';
 import { IndianRupee, Download, Share2, Printer, Heart, User, Calendar, Phone, Sparkles, Award, Star } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import logo from '../assets/logo-rounded.jpg.jpg';
 
 const InvoiceView = ({ order, onBack }) => {
   const invoiceRef = useRef();
@@ -86,7 +87,7 @@ const InvoiceView = ({ order, onBack }) => {
           <div className="flex flex-col items-center text-center mb-10 relative z-10">
             <div className="relative mb-6">
                <div className="w-24 h-24 bg-white rounded-full overflow-hidden border-4 border-primary-100 p-1 shadow-xl relative z-10">
-                 <img src="/src/assets/logo-rounded.jpg.jpg" alt="Logo" className="w-full h-full object-cover rounded-full" />
+                 <img src={logo} alt="Logo" className="w-full h-full object-cover rounded-full" />
                </div>
             </div>
             

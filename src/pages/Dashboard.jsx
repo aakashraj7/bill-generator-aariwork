@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, Button } from '../components/UI';
 import { Sparkles, Receipt, MapPin, Plus, Star, Award } from 'lucide-react';
 import { cn } from '../utils/cn';
+import logo from '../assets/logo-rounded.jpg.jpg';
 
 const Dashboard = ({ onCreateOrder }) => {
   return (
@@ -15,7 +16,7 @@ const Dashboard = ({ onCreateOrder }) => {
       <div className="mb-10 relative">
         <div className="relative">
           <div className="w-28 h-28 rounded-full bg-white shadow-2xl overflow-hidden border-4 border-white mx-auto mb-6 relative z-10">
-            <img src="/src/assets/logo-rounded.jpg.jpg" alt="Logo" className="w-full h-full object-cover" />
+            <img src={logo} alt="Logo" className="w-full h-full object-cover" />
           </div>
           <div className="absolute -top-2 -right-2 bg-yellow-400 text-white p-2.5 rounded-full shadow-lg border-2 border-white z-20">
             <Award size={20} className="fill-white" />
