@@ -27,7 +27,6 @@ const InvoiceView = ({ order, onBack }) => {
   const handleDownloadPDF = async () => {
     const element = invoiceRef.current;
     
-    // Improved PDF generation with better scaling
     const canvas = await html2canvas(element, {
       scale: 3,
       backgroundColor: '#ffffff',
@@ -36,10 +35,8 @@ const InvoiceView = ({ order, onBack }) => {
     });
     
     const imgData = canvas.toDataURL('image/png');
-    
-    // Create PDF with the same aspect ratio as the canvas
-    const imgWidth = 210; // A4 Width in mm
-    const pageHeight = 297; // A4 Height in mm
+    const imgWidth = 210; 
+    const pageHeight = 297; 
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
     
     const pdf = new jsPDF('p', 'mm', [imgWidth, imgHeight > pageHeight ? imgHeight : pageHeight]);
@@ -49,7 +46,8 @@ const InvoiceView = ({ order, onBack }) => {
 
   const handleWhatsAppShare = () => {
     const text = `✨ *SUBHA'S AARIWORKS* ✨\n📍 Tiruvannamalai\n📞 8489764879\n\n*Customer:* ${order.customerName}\n*Total Value:* ₹${order.total}\n*Balance:* ₹${order.remainingBalance}\n\n*Wear Your Elegance. Visit Us Again!* 🌸`;
-    const url = `https://wa.me/${order.phoneNumber}?text=${encodeURIComponent(text)}`;
+    // Removed specific number to open contact picker
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
@@ -112,13 +110,15 @@ const InvoiceView = ({ order, onBack }) => {
                  <User size={20} />
                  <span className="text-[10px] font-black uppercase tracking-[0.3em]">Customer Name</span>
                </div>
-               <h2 className="text-3xl font-black text-slate-900 leading-tight font-serif italic tracking-tight uppercase mb-4">
+               <h2 className={`text-3xl font-black text-slate-900 leading-tight font-serif italic tracking-tight uppercase ${order.phoneNumber ? 'mb-4' : 'mb-0'}`}>
                  {order.customerName}
                </h2>
-               <div className="flex items-center gap-2 text-primary-600 font-bold bg-white px-6 py-2 rounded-full border border-orange-100">
-                 <Phone size={18} />
-                 <span className="text-xl tracking-[0.1em]">{order.phoneNumber}</span>
-               </div>
+               {order.phoneNumber && (
+                 <div className="flex items-center gap-2 text-primary-600 font-bold bg-white px-6 py-2 rounded-full border border-orange-100">
+                   <Phone size={18} />
+                   <span className="text-xl tracking-[0.1em]">{order.phoneNumber}</span>
+                 </div>
+               )}
             </div>
             
             {/* Legend Style Date & Time Card */}

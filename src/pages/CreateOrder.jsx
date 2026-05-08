@@ -51,7 +51,7 @@ const CreateOrder = ({ onBack, onSuccess }) => {
     e.preventDefault();
     const newErrors = {};
     if (!formData.customerName) newErrors.customerName = 'Required';
-    if (!formData.phoneNumber) newErrors.phoneNumber = 'Required';
+    // phoneNumber is now optional
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
