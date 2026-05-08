@@ -44,11 +44,39 @@ const InvoiceView = ({ order, onBack }) => {
     pdf.save(`Bill-${order.customerName}.pdf`);
   };
 
-  const handleWhatsAppShare = () => {
+  const handleWhatsAppShare = async () => {
     const text = `✨ *SUBHA'S AARIWORKS* ✨\n📍 Tiruvannamalai\n📞 8489764879\n\n*Customer:* ${order.customerName}\n*Total Value:* ₹${order.total}\n*Balance:* ₹${order.remainingBalance}\n\n*Wear Your Elegance. Visit Us Again!* 🌸`;
-    // Removed specific number to open contact picker
-    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
+    
+    try {
+      const element = invoiceRef.current;
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        backgroundColor: '#ffffff',
+        useCORS: true,
+      });
+
+      // Convert canvas to blob
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      const file = new File([blob], `Bill-${order.customerName}.png`, { type: 'image/png' });
+
+      // Check if Web Share API supports files
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: "Subha's Aariworks Bill",
+          text: text
+        });
+      } else {
+        // Fallback to text sharing if file sharing is not supported
+        const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+      // Final fallback
+      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
   };
 
   const quotes = [
