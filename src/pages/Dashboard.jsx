@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, Button } from '../components/UI';
-import { Scissors, Receipt, MapPin, Plus, Star, Heart } from 'lucide-react';
+import { Sparkles, Receipt, MapPin, Plus, Star, Award } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const Dashboard = ({ onCreateOrder }) => {
@@ -11,65 +11,58 @@ const Dashboard = ({ onCreateOrder }) => {
       animate={{ opacity: 1 }}
       className="pb-32 px-5 pt-12 flex flex-col items-center text-center"
     >
-      {/* High-Impact Header */}
+      {/* Branding */}
       <div className="mb-10 relative">
-        <div className="relative group">
-          <div className="absolute inset-0 bg-primary-400 blur-3xl opacity-20 scale-150 rounded-full"></div>
-          <div className="w-32 h-32 rounded-[3rem] bg-white shadow-[0_20px_50px_rgba(124,58,237,0.2)] overflow-hidden border-4 border-white mx-auto mb-6 p-1 relative z-10 rotate-3">
-            <img src="/src/assets/logo-rounded.jpg.jpg" alt="Logo" className="w-full h-full object-cover rounded-[2.5rem]" />
+        <div className="relative">
+          <div className="w-28 h-28 rounded-full bg-white shadow-2xl overflow-hidden border-4 border-white mx-auto mb-6 relative z-10">
+            <img src="/src/assets/logo-rounded.jpg.jpg" alt="Logo" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute -top-4 -right-4 bg-yellow-400 text-white p-3 rounded-2xl shadow-xl border-4 border-white z-20 animate-bounce">
-            <Heart size={24} className="fill-white" />
+          <div className="absolute -top-2 -right-2 bg-yellow-400 text-white p-2.5 rounded-full shadow-lg border-2 border-white z-20">
+            <Award size={20} className="fill-white" />
           </div>
         </div>
         
-        <h1 className="text-4xl font-black text-slate-900 tracking-tighter mb-2 uppercase font-serif italic">
+        <h1 className="text-4xl font-black text-primary-950 tracking-tighter mb-2 uppercase font-serif italic">
           Subha's <span className="text-primary-600">Aariworks</span>
         </h1>
-        <div className="inline-flex items-center gap-2 px-6 py-2 bg-primary-900 text-white rounded-full shadow-lg border-2 border-primary-800">
-          <MapPin size={16} className="text-yellow-400" />
-          <span className="text-[10px] font-black uppercase tracking-[0.4em]">Tiruvannamalai</span>
+        <div className="inline-flex items-center gap-2 px-6 py-2 bg-primary-50 rounded-full border border-primary-100">
+          <MapPin size={16} className="text-primary-500" />
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-700">Tiruvannamalai</span>
         </div>
       </div>
 
       {/* Main Attraction Card */}
-      <Card className="w-full py-12 px-8 mb-8 bg-white relative overflow-hidden border-[6px] border-double border-primary-50 shadow-2xl rounded-[4rem]">
-        {/* Decorative Corner Thread */}
-        <div className="absolute top-0 right-0 p-8 opacity-10">
-          <Scissors size={100} className="rotate-45" />
+      <Card className="w-full py-12 px-8 mb-8 bg-white relative overflow-hidden border-2 border-primary-50 shadow-2xl rounded-[3rem]">
+        {/* Stitch Border */}
+        <div className="absolute inset-2 border-2 border-dashed border-primary-100/50 rounded-[2.5rem] pointer-events-none"></div>
+        
+        <div className="w-20 h-20 bg-primary-900 text-white rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-xl rotate-3">
+          <Receipt size={40} />
         </div>
         
-        <div className="w-24 h-24 bg-gradient-to-br from-primary-600 to-primary-800 text-white rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 shadow-[0_15px_30px_rgba(124,58,237,0.3)] rotate-6">
-          <Receipt size={48} />
-        </div>
-        
-        <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tighter uppercase font-serif">Instant Billing</h2>
-        <p className="text-slate-500 mb-10 text-lg leading-tight font-bold italic">
-          Professional Aari Studio Bills in one tap!
+        <h2 className="text-2xl font-black text-slate-900 mb-2 uppercase font-serif tracking-tight">Instant Billing</h2>
+        <p className="text-primary-600 font-serif italic text-lg mb-8">
+          "Wear your elegance."
         </p>
         
         <Button 
           onClick={onCreateOrder}
-          className="w-full py-6 text-2xl font-black shadow-[0_15px_40px_rgba(124,58,237,0.4)] rounded-[2.5rem] uppercase tracking-widest active:scale-95 bg-primary-600 border-none"
+          className="w-full py-6 text-xl font-black shadow-xl shadow-primary-500/30 rounded-[2.5rem] uppercase tracking-[0.2em] bg-primary-600 border-none"
         >
-          <Plus size={32} strokeWidth={4} />
+          <Plus size={28} strokeWidth={3} />
           <span>New Bill</span>
         </Button>
       </Card>
 
-      {/* Catchy Feature Grid */}
-      <div className="grid grid-cols-2 gap-4 w-full">
-        <div className="p-6 bg-gradient-to-br from-white to-primary-50 rounded-[3rem] border-2 border-primary-50 shadow-sm flex flex-col items-center gap-3">
-          <div className="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center shadow-inner">
-            <Star size={30} className="fill-yellow-600" />
-          </div>
-          <p className="text-[10px] font-black uppercase text-primary-900 tracking-widest">Premium Art</p>
+      {/* Trust Badges */}
+      <div className="grid grid-cols-2 gap-4 w-full px-4">
+        <div className="flex flex-col items-center gap-2">
+           <Star size={24} className="text-yellow-400 fill-yellow-400" />
+           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Premium Quality</p>
         </div>
-        <div className="p-6 bg-gradient-to-br from-white to-primary-50 rounded-[3rem] border-2 border-primary-50 shadow-sm flex flex-col items-center gap-3">
-          <div className="w-14 h-14 bg-primary-100 text-primary-600 rounded-2xl flex items-center justify-center shadow-inner">
-            <Scissors size={30} className="rotate-90" />
-          </div>
-          <p className="text-[10px] font-black uppercase text-primary-900 tracking-widest">Aari Design</p>
+        <div className="flex flex-col items-center gap-2">
+           <Sparkles size={24} className="text-primary-300" />
+           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Boutique Design</p>
         </div>
       </div>
     </motion.div>
